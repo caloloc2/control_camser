@@ -5,11 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CamSer</title>
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
     
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">CamSer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+    <div class="container" style="padding-top: 2em;">
+        <div class="row">
+            <div class="col-sm">
+                <figure id='video'><img src="fotos/no_video.png" alt=""></figure>
+
+                <div class="linea">
+                <button type="button" class="btn btn-primary" id="inicio">Ver C&aacute;mara</button>
+                <button type="button" class="btn btn-default" id="detener">Detener</button>
+                </div>
+            </div>
+            <div class="col-sm">
+              <div class="linea">
+                <button type="button" class="btn btn-primary" id="arriba">Arriba</button>
+              </div>
+              <div class="linea">
+                <button type="button" class="btn btn-primary" id="izquierda">Izquierda</button>
+                <button type="button" class="btn btn-primary" id="derecha">Derecha</button>
+              </div>
+              <div class="linea">
+                <button type="button" class="btn btn-primary" id="abajo">Abajo</button>
+              </div>
+            </div>
+          </div>
+    </div>
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
