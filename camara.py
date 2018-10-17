@@ -19,7 +19,7 @@ def estado():
 	archivo = open("estado.txt", "r")
 	lin = archivo.read()
 	archivo.close()
-	if (lin="0"):
+	if (lin=="0"):
 		return False
 	else:
 		return True 
@@ -35,12 +35,14 @@ while success:
 	lectura = estado()
 	
 	while lectura:
+		print("grabando...")
 		success,image = vidcap.read()
 		nombre_foto = "frame%d.jpg" % count
 		cv2.imwrite("fotos/"+nombre_foto, image)
 		guarda_bd(nombre_foto)
 		count += 1
 		lectura = estado()
-		
+	
+	print("no graba.")
 	count = 0		
 	db.close()
