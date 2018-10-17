@@ -26,6 +26,7 @@ success,image = vidcap.read()
 count = 0
 
 inicia()
+# borrar
 
 while success:
 	success,image = vidcap.read()
