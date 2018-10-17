@@ -3,19 +3,15 @@
 import cv2 # para manejo de video y fotos
 import MySQLdb # para manejo de base de datos
 db = MySQLdb.connect(host="localhost", user="root", passwd=" ", db="camara")
+cur = db.cursor()
 
 #funcion para guardar nombre de foto en base de datos
-def guarda_bd(foto):	
-	cur = db.cursor()
-	sql = "INSERT INTO fotos (foto) VALUES (%s)"
-	val = (foto,)
-	cur.execute(sql, val)
+def guarda_bd(foto):
+	cur.execute("INSERT INTO fotos (foto) VALUES (%s)", (foto,))
 	db.commit()
 
 def inicia():
-	cur = db.cursor()
-	sql = "TRUNCATE TABLE fotos"
-	cur.execute(sql)
+	cur.execute("TRUNCATE TABLE fotos")
 
 camara = 0
 vidcap = cv2.VideoCapture(camara)
