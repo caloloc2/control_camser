@@ -11,14 +11,11 @@ def guarda_bd(foto):
 	val = (foto,)
 	cur.execute(sql, val)
 	db.commit()
-	db.close()
 
 def inicia():
 	cur = db.cursor()
 	sql = "TRUNCATE TABLE fotos"
 	cur.execute(sql)
-	db.commit()
-	db.close()
 
 camara = 0
 vidcap = cv2.VideoCapture(camara)
@@ -26,7 +23,6 @@ success,image = vidcap.read()
 count = 0
 
 inicia()
-# borrar
 
 while success:
 	success,image = vidcap.read()
@@ -36,3 +32,4 @@ while success:
 	count += 1
 	if (count>20):
 		break
+		db.close()
