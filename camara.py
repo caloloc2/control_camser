@@ -44,5 +44,6 @@ while success:
 		lectura = estado()
 	
 	print("no graba.")
-	count = 0		
-	db.close()
+	count = 0
+
+db.close()
