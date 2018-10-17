@@ -2,6 +2,7 @@
 #Importamos librerias necesarias
 import cv2 # para manejo de video y fotos
 import MySQLdb # para manejo de base de datos
+import shutil
 db = MySQLdb.connect(host="localhost", user="root", passwd=" ", db="camara")
 cur = db.cursor()
 
@@ -12,6 +13,7 @@ def guarda_bd(foto):
 
 def inicia():
 	cur.execute("TRUNCATE TABLE fotos")
+	shutil.rmtree('/fotos')
 
 camara = 0
 vidcap = cv2.VideoCapture(camara)
