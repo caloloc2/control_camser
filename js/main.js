@@ -1,7 +1,7 @@
 $(document).ready(function(){
     setInterval(function(){
         Video();
-    }, 500)
+    }, 250)
 })
 
 $('#inicio').click(function(){
