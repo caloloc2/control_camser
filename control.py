@@ -12,7 +12,7 @@ def movimientos():
 	archivo = open("movimientos.txt", "r")
 	lin = archivo.read()
 	archivo.close()
-    return lin
+        return lin
 
 while True:
     valor = movimientos()
@@ -39,5 +39,5 @@ while True:
         GPIO.output(19, False)
         GPIO.output(13, False)
         GPIO.output(6, False)
-        
+
 GPIO.cleanup()
