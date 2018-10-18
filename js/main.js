@@ -86,7 +86,7 @@ function Video(){
 		success: function(datos) {
             console.log(datos);
             var pic = document.getElementById('imagen_video');
-            pic.src = datos['foto'];
+            pic.src = "fotos/"+datos['foto'];
         },
         error: function(e){
             console.log(e.responseText);
