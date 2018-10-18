@@ -1,0 +1,135 @@
+// INSTALACION Y CONFIGURACION
+Bajar y quemar imagen de raspbian al SD del raspberry.
+Ingresar a la consola con las credenciales pi - raspberry 
+y ejecutar los siguientes comandos:
+
+sudo su -   // para hacer todos las instalaciones como administrador
+sudo raspi-config
+En el menu seleccionar 
+1. Advanced Options / Expand filesystem
+2. Interfacing Option / SSH (habilitar)
+3. Finish
+Debe reiniciar la raspberry automaticamente, sino hacerlo con sudo reboot.
+
+// Iniciar nuevamente y ejecutar
+
+sudo su -
+sudo apt-get update
+sudo apt-get upgrade
+sudo rpi-update
+sudo reboot
+
+//// se reinicia la raspberry e ingresar nuevamente y ejecutar 
+
+sudo su -
+sudo apt-get install build-essential cmake pkg-config -y
+sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev -y
+sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev -y
+sudo apt-get install libxvidcore-dev libx264-dev -y
+sudo apt-get install libgtk2.0-dev libgtk-3-dev -y
+sudo apt-get install libatlas-base-dev gfortran -y
+
+sudo apt-get install python3 python3-setuptools python3-dev -y
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python3 get-pip.py
+sudo pip3 install numpy
+
+cd ~
+wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.4.0.zip
+unzip opencv.zip
+wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.4.0.zip
+unzip opencv_contrib.zip
+
+cd opencv-3.4.0
+mkdir build
+cd build
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+-D CMAKE_INSTALL_PREFIX=/usr/local \
+-D BUILD_opencv_java=OFF \
+-D BUILD_opencv_python2=OFF \
+-D BUILD_opencv_python3=ON \
+-D PYTHON_DEFAULT_EXECUTABLE=$(which python3) \
+-D INSTALL_C_EXAMPLES=OFF \
+-D INSTALL_PYTHON_EXAMPLES=ON \
+-D BUILD_EXAMPLES=ON\
+-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.4.0/modules \
+-D WITH_CUDA=OFF \
+-D BUILD_TESTS=OFF \
+-D BUILD_PERF_TESTS= OFF ..
+
+sudo nano /etc/dphys-swapfile
+En el archivo que se abra, encontrar la siguiente linea y modificar
+CONF_SWAPSIZE=100
+cambiar por
+CONF_SWAPSIZE=1024
+CTRL + O ==> ENTER ==> CTRL + X
+
+sudo /etc/init.d/dphys-swapfile stop
+sudo /etc/init.d/dphys-swapfile start
+
+make -j4
+
+sudo make install
+sudo ldconfig
+
+Una vez terminado el proceso, cambiar el tamano del swapfile
+sudo nano /etc/dphys-swapfile
+CONF_SWAPSIZE=100
+sudo /etc/init.d/dphys-swapfile stop
+sudo /etc/init.d/dphys-swapfile start
+
+sudo apt-get update
+sudo apt-get install apache2
+sudo apt-get install mysql-server mysql-client
+sudo apt-get install php
+sudo apt-get install libapache2-mod-php
+sudo apt-get install php-cli
+sudo apt-get install php-mysql
+
+Los scripts en python son escritos para python3.
+Por defecto raspberry usa python 2.7
+Para estableces python3 como por defecto, ejecutamos
+
+ls /usr/bin/python*
+update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+update-alternatives --install /usr/bin/python python /usr/bin/python3.5 2
+Para comprobar ejecutamos
+python --version
+debe dar por respuesta
+Python 3.5.4 (o la version 3.X.X que se instale)
+
+Librerias para control de GPIO
+
+sudo apt-get update
+sudo apt-get install rpi.gpio
+
+// Copiar del repositorio el proyecto
+
+cd /vaw/www/html
+git clone https://github.com/caloloc2/control_camser
+sudo chmod -R 777 control_camser
+
+// Verificamos que ip se le asigno a la raspberry con 
+
+ifconfig
+
+// Una vez sabiendo la ip, vamos a cualquier navegador y en la barra de direcciones ponemos la ip
+
+192.169.X.X/control_camser (Debe salir la interfaz del proyecto)
+localhost/control_camser (Si se va a navegar desde la misma raspberry)
+
+// Abrir dos consolas desde la raspberry o con Putty
+
+// En la una consola ejecutar
+
+sudo su -
+sudo python /var/www/html/control_camser/control.py (Control de los pines del GPIO)
+
+// En la segunda consola ejecutamos
+
+sudo su -
+sudo python /var/www/html/control_camser/camara.py (Control de la camara USB conectada)
+
+// Ahora podemos ejecutar los botones de la interfaz grafica y debe comenzar a reproducirse el video
+// Y a encender leds o mover motores.
+
