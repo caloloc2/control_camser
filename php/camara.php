@@ -20,6 +20,7 @@ try{
     fclose($file);
 
     $respuesta['estado'] = true;
+    $respuesta['nuevo_estado'] = $nuevo_estado;
 
 }catch(Exception $e){
     $respuesta['error'] = $e->getMessage();
