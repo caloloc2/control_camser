@@ -133,3 +133,5 @@ sudo python /var/www/html/control_camser/camara.py (Control de la camara USB con
 // Ahora podemos ejecutar los botones de la interfaz grafica y debe comenzar a reproducirse el video
 // Y a encender leds o mover motores.
 
+// Para poder acceder remotamente a la raspberry, es necesario entrar al router de la red donde va a estar la raspberry
+// y dentro de las configuraciones del router habilitar el puerto 80 a la ip de la raspberry.
