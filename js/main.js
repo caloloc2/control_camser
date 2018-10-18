@@ -84,9 +84,17 @@ function Video(){
 		url: 'php/imagenes.php',
         dataType: 'json',
 		success: function(datos) {
-            console.log(datos);
+            //console.log(datos);
             var pic = document.getElementById('imagen_video');
-            pic.src = "fotos/"+datos['foto'];
+            try {
+                if (datos['estado']){                
+                    pic.src = "fotos/"+datos['foto'];
+                }else{
+                    pic.src = "fotos/no_video.png";
+                }    
+            } catch (error) {
+                pic.src = "fotos/no_video.png";
+            }
         },
         error: function(e){
             console.log(e.responseText);
