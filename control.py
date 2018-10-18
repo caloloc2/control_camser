@@ -6,6 +6,8 @@ GPIO.setup(19, GPIO.OUT) ## GPIO 19 como salida
 GPIO.setup(13, GPIO.OUT) ## GPIO 13 como salida
 GPIO.setup(6, GPIO.OUT) ## GPIO 6 como salida
 
+tiempo = 1
+
 def movimientos():
 	archivo = open("movimientos.txt", "r")
 	lin = archivo.read()
@@ -21,19 +23,19 @@ while True:
     valor = movimientos()
     if (valor=="1"):
         GPIO.output(26, True)
-        time.sleep(.100)
+        time.sleep(tiempo)
         GPIO.output(26, False)
     elif (valor=="2"):
         GPIO.output(19, True)
-        time.sleep(.100)
+        time.sleep(tiempo)
         GPIO.output(19, False)
     elif (valor=="3"):
         GPIO.output(13, True)
-        time.sleep(.100)
+        time.sleep(tiempo)
         GPIO.output(13, False)
     elif (valor=="4"):
         GPIO.output(6, True)
-        time.sleep(.100)
+        time.sleep(tiempo)
         GPIO.output(6, False)
     else:
         # apaga todos los leds
