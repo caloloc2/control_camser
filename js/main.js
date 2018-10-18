@@ -1,3 +1,9 @@
+$(document).ready(function(){
+    setInterval(function(){
+        Video();
+    }, 500)
+})
+
 $('#inicio').click(function(){
     $.ajax({
 		url: 'php/camara.php',
@@ -48,7 +54,7 @@ function Movimientos(valor){
             console.log(datos);
             setTimeout(function(){
                 Encerar()
-            }, 1000)
+            }, 250)
         },
         error: function(e){
             console.log(e.responseText);
@@ -64,6 +70,19 @@ function Encerar(){
         data: {
             movimiento: 0
         },
+		success: function(datos) {
+            console.log(datos);
+        },
+        error: function(e){
+            console.log(e.responseText);
+        }
+	});
+}
+
+function Video(){
+    $.ajax({
+		url: 'php/imagenes.php',
+        dataType: 'json',
 		success: function(datos) {
             console.log(datos);
         },
