@@ -85,6 +85,8 @@ function Video(){
         dataType: 'json',
 		success: function(datos) {
             console.log(datos);
+            var pic = document.getElementById('imagen_video');
+            pic.src = datos['foto'];
         },
         error: function(e){
             console.log(e.responseText);
