@@ -46,6 +46,26 @@ function Movimientos(valor){
         },
 		success: function(datos) {
             console.log(datos);
+            setTimeout(function(){
+                Encerar()
+            }, 1000)
+        },
+        error: function(e){
+            console.log(e.responseText);
+        }
+	});
+}
+
+function Encerar(){
+    $.ajax({
+		url: 'php/movimientos.php',
+        dataType: 'json',
+        type: 'POST',
+        data: {
+            movimiento: 0
+        },
+		success: function(datos) {
+            console.log(datos);
         },
         error: function(e){
             console.log(e.responseText);

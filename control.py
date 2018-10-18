@@ -14,13 +14,9 @@ def movimientos():
 	archivo.close()
     return lin
 
-def encerar():
-    f = open("movimientos.txt", "w")
-    f.write("0")
-    f.close()
-
 while True:
     valor = movimientos()
+
     if (valor=="1"):
         GPIO.output(26, True)
         time.sleep(tiempo)
@@ -43,7 +39,5 @@ while True:
         GPIO.output(19, False)
         GPIO.output(13, False)
         GPIO.output(6, False)
-    
-    encerar()
-
+        
 GPIO.cleanup()
